@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "declarationMap": true,
+        "declaration": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "strictPropertyInitialization": false,
+        "rootDir": ".",
+        "outDir": "build",
+        "typeRoots": ["node_modules/@types"],
+        "module": "commonjs",
+        "lib": ["es2019"],
+        "resolveJsonModule": true,
+        "target": "es6"
+    },
+    "include": ["src/**/*.ts"],
+    "noImplicitAny": false,
+    "target": "es6"
+}
