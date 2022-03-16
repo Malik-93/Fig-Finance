@@ -24,7 +24,7 @@ router.get('/', async function (req, res) {
             });
         }
         await eventService.bulkCreateEvents(eventsArr);
-        return res.send('Fig finance app working and Some dummy events added in database!');
+        return res.send('Fig finance app working and some dummy events added in database!');
     }
     res.send('Fig finance app working!');
 });

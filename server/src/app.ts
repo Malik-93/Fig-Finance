@@ -12,8 +12,8 @@ app.use(express.json());
 
 app.use('/', router);
 app.listen(port, () => {
-    logger.info(`Site Wide Warning app listening on port ${port}`);
-    console.log(`Site Wide Warning app listening on port ${port}`);
+    logger.info(`Fig finance app listening on port ${port}`);
+    console.log(`Fig finance app listening on port ${port}`);
 });
 
 export default app;
