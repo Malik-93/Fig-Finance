@@ -2,10 +2,13 @@
     "name": "server",
     "version": "1.0.0",
     "description": "",
-    "main": "src/app.ts",
+    "main": "build/server/app.js",
     "scripts": {
-        "start": "tsc && nodemon src/app.ts",
+        "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+        "start": "tsc && node build/server/app.js",
         "build": "npm run lint && tsc",
+        "server": "yarn && tsc && nodemon server/app.ts",
+        "client": "cd client && yarn && yarn start",
         "compile": "tsc",
         "prettier": "prettier --config ./.prettierrc --write \"**/*.ts\"",
         "lint": "npm run prettier --write --check --config ./.prettierrc \"**/*.ts\" && eslint . --ext .ts"
@@ -13,6 +16,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "concurrently": "^7.2.2",
         "cors": "^2.8.5",
         "dotenv": "^15.0.0",
         "express": "^4.17.2",
@@ -25,7 +29,9 @@
         "@types/node": "^17.0.14",
         "@typescript-eslint/eslint-plugin": "^5.10.2",
         "@typescript-eslint/parser": "^5.10.2",
+        "chai": "^4.3.6",
         "eslint": "^8.8.0",
+        "mocha": "^10.0.0",
         "nodemon": "^2.0.15",
         "prettier": "^2.5.1",
         "ts-node": "^10.7.0",

@@ -13,7 +13,7 @@
         "resolveJsonModule": true,
         "target": "es6"
     },
-    "include": ["src/**/*.ts"],
+    "include": ["server/**/*.ts"],
     "noImplicitAny": false,
     "target": "es6"
 }
