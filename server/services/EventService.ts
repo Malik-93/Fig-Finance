@@ -5,7 +5,8 @@ import { uniqueIdGenerator } from '../helpers';
 
 const initEventRequest: CreateEventRequest = {
     title: 'Healthcare Track',
-    description:'This session seeks to get people thinking about the ultimate objective of health AI',
+    description:
+        'This session seeks to get people thinking about the ultimate objective of health AI',
     category: 'AI',
     date: `${new Date().toUTCString()}`,
     isVirtual: true,
@@ -58,7 +59,9 @@ export class EventService {
                 { description: { $in: filter.query } },
             ],
         };
-        const doc = await EventRepo.find(query).populate('Event').exec();
+        const doc = await EventRepo.find(query)
+            .populate('Event')
+            .exec();
         return doc as Event[];
     }
 }

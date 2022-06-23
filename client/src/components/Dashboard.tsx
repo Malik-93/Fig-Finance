@@ -36,7 +36,7 @@ export default (props: any) => {
         setEvents(events)
       }
     } catch (error) {
-      console.log("an error acuured during getting events...", error);
+      console.log("an error acuured during getting events...", JSON.parse(JSON.stringify(error)));
     }
   }
   const filterEvents = async (query: string) => {
@@ -53,7 +53,7 @@ export default (props: any) => {
         setEvents([]);
       }
     } catch (error) {
-      console.log("an error acuured during filter...", error);
+      console.log("an error acuured during filter...", JSON.parse(JSON.stringify(error)));
 
     }
   }
@@ -61,9 +61,11 @@ export default (props: any) => {
   React.useEffect(() => {
     getEvents()
   }, [])
+  console.log('events', events);
+
   return (
     <div className="container-fluid">
-        <Search onSubmit={filterEvents} />
+      <Search onSubmit={filterEvents} />
       <div className="row">
         <div className="col-sm-12 col-md-12 cards">
           {

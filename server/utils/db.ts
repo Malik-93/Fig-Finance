@@ -23,10 +23,14 @@ mongoose.set('useCreateIndex', true);
 connection
     .then((db) => {
         logger.info('Connected to database');
+        console.log('Connected to database');
+
         return db;
     })
     .catch((err) => {
         logger.error('Error connecting to database: ' + err);
+        console.log('Error connecting to database: ' + err);
+
     });
 
 export = connection;

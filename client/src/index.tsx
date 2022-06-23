@@ -7,6 +7,9 @@ import App from './App';
 //     console.error = () => {}
 //     console.info = () => {}
 // }
+if (process.env.NODE_ENV === 'production') {
+    console.log = () => { }
+}
 ReactDOM.render(
     <React.StrictMode>
         <App />

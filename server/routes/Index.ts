@@ -1,13 +1,18 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
-import { randomAddressGenerator, randomCategoryGenerator, randomStringGenerator, uniqueIdGenerator } from '../helpers';
+import {
+    randomAddressGenerator,
+    randomCategoryGenerator,
+    randomStringGenerator,
+    uniqueIdGenerator,
+} from '../helpers';
 import { Event } from '../models/Event';
 import { EventService } from '../services/EventService';
 const router = express.Router();
 const eventService = new EventService();
 
 /* GET home page. */
-router.get('/', async function (req, res) {
+const initRoute = async function (req, res) {
     let eventsArr: Array<object> = [];
     const events: Event[] = await eventService.getAllEvents();
     if (!events.length) {
@@ -24,9 +29,12 @@ router.get('/', async function (req, res) {
             });
         }
         await eventService.bulkCreateEvents(eventsArr);
-        return res.send('Fig finance app working and some dummy events added in database!');
+        return res.send(
+            'Fig finance app working and some dummy events added in database!'
+        );
+    } else {
+        res.send('Fig finance app working!');
     }
-    res.send('Fig finance app working!');
-});
-
+};
+router.get('/', initRoute);
 export = router;

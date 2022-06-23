@@ -1,19 +1,14 @@
 import * as express from 'express';
 import * as cors from 'cors';
-import * as dbconnect from './utils/db';
 import * as router from './routes/Router';
-import logger from './utils/logger';
+import * as connectDB from './utils/db';
+import errorHandler from './middlewares/error-handler';
 const app = express();
-const port = 8000;
-dbconnect;
-
+connectDB;
 app.use(cors());
 app.use(express.json());
 
 app.use('/', router);
-app.listen(port, () => {
-    logger.info(`Fig finance app listening on port ${port}`);
-    console.log(`Fig finance app listening on port ${port}`);
-});
+app.use(errorHandler);
 
 export default app;
