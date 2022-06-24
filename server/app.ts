@@ -1,9 +1,9 @@
-import * as express from 'express';
-import * as cors from 'cors';
-import * as router from './routes/Router';
-import * as connectDB from './utils/db';
+import express, { Express } from 'express';
+import cors from 'cors';
+import connectDB from './utils/db';
+import router from './routes/Router';
 import errorHandler from './middlewares/error-handler';
-const app = express();
+const app: Express = express();
 connectDB;
 app.use(cors());
 app.use(express.json());

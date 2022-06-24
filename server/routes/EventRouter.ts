@@ -1,39 +1,36 @@
-import * as express from 'express';
+import express, { Router } from 'express';
 import { Event, CreateEventRequest, EventFilters } from '../models/Event';
 import { EventService } from '../services/EventService';
 
-const router = express.Router();
+const router: Router = express.Router();
 const eventService = new EventService();
 /* Return a list of events */
-router.get(
-    '/list',
-    async function (req, res) {
-        try {
-            const events: Event[] = await eventService.getAllEvents();
-            if (events.length)
-                res.status(200).json({
-                    success: true,
-                    statusCode: 200,
-                    message: 'Success',
-                    events,
-                });
-            else
-                res.status(200).json({
-                    success: true,
-                    statusCode: 404,
-                    message: 'No record found',
-                    events,
-                });
-        } catch (error) {
-            res.status(500).json({
-                success: false,
-                statusCode: 500,
-                message: 'An error accured during getting events',
-                error: error.stack,
+router.get('/list', async function (req, res) {
+    try {
+        const events: Event[] = await eventService.getAllEvents();
+        if (events.length)
+            res.status(200).json({
+                success: true,
+                statusCode: 200,
+                message: 'Success',
+                events,
             });
-        }
+        else
+            res.status(200).json({
+                success: true,
+                statusCode: 404,
+                message: 'No record found',
+                events,
+            });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            statusCode: 500,
+            message: 'An error accured during getting events',
+            error: error.stack,
+        });
     }
-);
+});
 /* Return a list of filtered events */
 
 router.post('/filtered-list', async function (req, res) {

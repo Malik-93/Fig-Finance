@@ -12,13 +12,9 @@
         "module": "commonjs",
         "lib": ["es2019"],
         "resolveJsonModule": true,
-        "target": "es6"
+        "target": "es6",
+        "esModuleInterop": true
     },
-    // "exclude": [
-    //     "./tests/",
-    //     "./node_modules/",
-    //     "./dist/"
-    //   ],
     "include": ["server/**/*.ts"],
     "noImplicitAny": false,
     "target": "es6"

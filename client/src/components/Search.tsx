@@ -23,7 +23,10 @@ export default (props: any) => {
       //   setText("");
     }
   };
-  const debounceInputSearch = React.useCallback(debounceFunction((txt: string) => props.onSubmit(txt), 1500), []);
+  const debounceInputSearch = React.useCallback((txt: string) => {
+    console.log('[useCallback].txt', txt);
+    debounceFunction((txt: string) => props.onSubmit(txt), 1500)
+  }, []);
   const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const value = evt.currentTarget.value;
     setText(value);
@@ -39,7 +42,7 @@ export default (props: any) => {
           value={text}
           onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
             onChange(ev)
-            debounceInputSearch(ev.currentTarget.value);
+            debounceInputSearch(ev.target.value);
           }}
           className="bg-white p-2 w-3/4 outline-none"
         />

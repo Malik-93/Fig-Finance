@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 export interface Event {
-    _id: mongoose.Schema.Types.ObjectId,
+    _id: mongoose.Schema.Types.ObjectId;
     documentID: number;
     title: string;
     description: string;
@@ -20,5 +20,5 @@ export interface CreateEventRequest {
 }
 
 export interface EventFilters {
-    query: string[], 
+    query: string[];
 }

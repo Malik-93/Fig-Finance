@@ -8,7 +8,7 @@ export const randomStringGenerator = () => {
 };
 
 export const randomCategoryGenerator = () => {
-    let arr = ['Nodejs', 'Express', 'Mongodb', 'React', 'Redux'];
+    const arr = ['Nodejs', 'Express', 'Mongodb', 'React', 'Redux'];
     return arr[Math.floor(Math.random() * arr.length)];
 };
 function getRandomElement(array) {
@@ -17,8 +17,8 @@ function getRandomElement(array) {
     else return array;
 }
 export const randomAddressGenerator = () => {
-    var streetNumber = ['25489', '87459', '35478', '15975', '95125', '78965'];
-    var streetName = [
+    const streetNumber = ['25489', '87459', '35478', '15975', '95125', '78965'];
+    const streetName = [
         'A street',
         'B street',
         'C street',
@@ -26,7 +26,7 @@ export const randomAddressGenerator = () => {
         'E street',
         'F street',
     ];
-    var cityName = [
+    const cityName = [
         'Riyadh',
         'Dammam',
         'Jedda',
@@ -35,16 +35,16 @@ export const randomAddressGenerator = () => {
         'Maddena',
         'Haiel',
     ];
-    var stateName = [
+    const stateName = [
         'Qassem State',
         'North State',
         'East State',
         'South State',
         'West State',
     ];
-    var zipCode = ['28889', '96459', '35748', '15005', '99625', '71465'];
+    const zipCode = ['28889', '96459', '35748', '15005', '99625', '71465'];
 
-    var template = [
+    const template = [
         streetNumber,
         ' ',
         streetName,

@@ -15,7 +15,7 @@
         "@typescript-eslint/no-explicit-any": "off",
         "arrow-parens": ["error", "always"],
         "no-multi-spaces": ["error"],
-        "quotes": ["error", "single", "avoid-escape"],
-        "@typescript-eslint/no-unused-vars": "off"
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-inferrable-types": "off"
     }
 }

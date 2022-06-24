@@ -13,7 +13,7 @@ const eventService = new EventService();
 
 /* GET home page. */
 const initRoute = async function (req, res) {
-    let eventsArr: Array<object> = [];
+    const eventsArr: Array<object> = [];
     const events: Event[] = await eventService.getAllEvents();
     if (!events.length) {
         for (let index = 0; index < 30; index++) {

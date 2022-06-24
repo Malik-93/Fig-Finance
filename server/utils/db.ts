@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import logger from './logger';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const mongoose = require('mongoose');
+import mongoose, { ConnectOptions } from 'mongoose';
 
 dotenv.config();
 
@@ -13,12 +13,12 @@ const connection = mongoose.connect(process.env.MONGODB_URI, {
     reconnectInterval: 500,
     poolSize: 50,
     bufferMaxEntries: 0,
-    keepAlive: 120,
     useNewUrlParser: true,
-    // useUnifiedTopology: true
+    keepAlive: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
 });
-
-mongoose.set('useCreateIndex', true);
 
 connection
     .then((db) => {
@@ -30,7 +30,6 @@ connection
     .catch((err) => {
         logger.error('Error connecting to database: ' + err);
         console.log('Error connecting to database: ' + err);
-
     });
 
 export = connection;

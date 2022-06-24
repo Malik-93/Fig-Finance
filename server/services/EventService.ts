@@ -59,9 +59,7 @@ export class EventService {
                 { description: { $in: filter.query } },
             ],
         };
-        const doc = await EventRepo.find(query)
-            .populate('Event')
-            .exec();
+        const doc = await EventRepo.find(query).populate('Event').exec();
         return doc as Event[];
     }
 }

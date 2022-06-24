@@ -8,7 +8,7 @@ const eventSchema = new mongoose.Schema({
     category: String,
     date: String,
     isVirtual: Boolean,
-    address: String
+    address: String,
 });
 
 const EventRepo = mongoose.model('Event', eventSchema, 'Events');

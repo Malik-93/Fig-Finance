@@ -19,9 +19,7 @@ function handleError(
     let customError = err;
 
     if (!(err instanceof CustomError)) {
-        customError = new CustomError(
-            'Ooops, Something went wrong!!'
-        );
+        customError = new CustomError('Ooops, Something went wrong!!');
     }
 
     // we are not using the next function to prvent from triggering
