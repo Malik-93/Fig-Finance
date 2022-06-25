@@ -36,7 +36,12 @@ router.get('/list', async function (req, res) {
 router.post('/filtered-list', async function (req, res) {
     const filter: EventFilters = req.body;
     try {
-        const events: Event[] = await eventService.filterEvents(filter);
+        let events: Event[];
+        if (!filter.query[0]) {
+            events = await eventService.getAllEvents();
+        } else {
+            events = await eventService.filterEvents(filter);
+        }
         if (events.length)
             res.status(200).json({
                 success: true,

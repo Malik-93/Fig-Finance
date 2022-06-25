@@ -1,12 +1,12 @@
 import * as dotenv from 'dotenv';
 import logger from './logger';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-import mongoose, { ConnectOptions } from 'mongoose';
-
+import mongoose from 'mongoose';
 dotenv.config();
-
+if (process.env.NODE_ENV === 'development') {
+    process.env['MONGODB_URI'] = process.env.LOCAL_MONGODB_URI;
+}
 mongoose.Promise = global.Promise;
-
 const connection = mongoose.connect(process.env.MONGODB_URI, {
     autoIndex: true,
     poolSize: 50,

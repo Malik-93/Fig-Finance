@@ -1,35 +1,19 @@
 import * as React from "react";
 import axios from '../utils/axios';
 import Search from "./Search";
-const Card = (props: any) => {
-  const { title, description, category, address, date } = props.item
-  return (
-    <div className="card" key={`card-item-key-${title}`}>
-      <img className="imgRes" src={"https://picsum.photos/200"} alt="thumbnail" />
-      <div className="category"><b>{category}</b></div>
-      <div>
-        <h5>{title}</h5>
-        <p className="description">{description}</p>
-        <p className="address">{address}</p>
-        <p className="date"><i>{date}</i></p>
-      </div>
-    </div>
-  )
-}
+import { Iitem } from '../interfaces/EventItem';
+import EventCard from './EventCard';
+import NoRecord from "./NoRecord";
+import Loader from "./Loader";
 
-const Cards = (props: any) => {
-  return props.data.map((item: any, index: any) => (
-    <div className="" key={`card-key-${index}`} >
-      <Card item={item} />
-    </div>
-  ));
-}
 
 export default (props: any) => {
-  const [events, setEvents] = React.useState([])
-  const [message, setMessage] = React.useState("")
+  const [events, setEvents] = React.useState([]);
+  const [message, setMessage] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
   const getEvents = async () => {
     try {
+      setLoading(true)
       const response = await axios.get("/api/events/list");
       const { statusCode, events } = response.data;
       if (statusCode === 200) {
@@ -37,17 +21,21 @@ export default (props: any) => {
       }
     } catch (error) {
       console.log("an error acuured during getting events...", JSON.parse(JSON.stringify(error)));
+    } finally {
+      setLoading(false)
     }
   }
   const filterEvents = async (query: string) => {
     try {
+      setLoading(true)
       const payload = {
         "query": [query.charAt(0).toUpperCase() + query.slice(1)],
       }
       const response = await axios.post("/api/events/filtered-list", payload);
       const { statusCode, events } = response.data;
       if (statusCode === 200) {
-        setEvents(events)
+        setEvents(events);
+        setMessage('')
       } else {
         setMessage("No record found");
         setEvents([]);
@@ -55,6 +43,8 @@ export default (props: any) => {
     } catch (error) {
       console.log("an error acuured during filter...", JSON.parse(JSON.stringify(error)));
 
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -62,15 +52,19 @@ export default (props: any) => {
     getEvents()
   }, [])
   console.log('events', events);
-
   return (
-    <div className="container-fluid">
+    <div className="">
       <Search onSubmit={filterEvents} />
-      <div className="row">
-        <div className="col-sm-12 col-md-12 cards">
+
+      <div className="p-5" key={`card-key-`}>
+        <div className="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5  g-3">
           {
-            events.length ? (<Cards data={events} />) : <div className="message">{message}</div>
+            (events || []).map((item: Iitem, index: number) => (
+              <EventCard item={item} index={index} key={`event-index-${index}`} />
+            ))
           }
+          <Loader loading={loading} />
+          <NoRecord message={message} />
         </div>
       </div>
     </div>

@@ -3,30 +3,25 @@ import * as React from "react";
 
 export default (props: any) => {
   const [text, setText] = React.useState("");
-  const debounceFunction = (func: Function, delay: number) => {
+  type callBackFunction = (value: string) => void;
+  const debounceFunction = (func: callBackFunction, delay: number) => {
     let timer: any;
     return function (...rest: []) {
-      const self = this;
       const args = [...rest];
       clearTimeout(timer);
       timer = setTimeout(() => {
-        func.apply(self, args)
+        func.apply(this, args)
       }, delay)
     }
   }
 
   const onSubmit = (evt: React.FormEvent) => {
     evt.preventDefault();
-    if (text === "") {
-    } else {
+    if (text.length) {
       props.onSubmit && props.onSubmit(text);
-      //   setText("");
     }
   };
-  const debounceInputSearch = React.useCallback((txt: string) => {
-    console.log('[useCallback].txt', txt);
-    debounceFunction((txt: string) => props.onSubmit(txt), 1500)
-  }, []);
+  const debounceInputSearch = React.useCallback(debounceFunction((txt: string) => props.onSubmit(txt), 1000), []);
   const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const value = evt.currentTarget.value;
     setText(value);
@@ -35,20 +30,30 @@ export default (props: any) => {
   return (
     <div>
       <form onSubmit={onSubmit} className="bg-gray-200 p-5">
-        <input
-          type="text"
-          name="text"
-          placeholder="Search events title, description or category..."
-          value={text}
-          onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
-            onChange(ev)
-            debounceInputSearch(ev.target.value);
-          }}
-          className="bg-white p-2 w-3/4 outline-none"
-        />
-        <button type="submit" className="p-2 text-center text-blue-500 w-1/4 bg-white border-l">
-          Search
-        </button>
+        <div className="row gutter-2 mb-5">
+          <div className="col-lg-4" />
+          <div className="col-lg-4">
+            <div className="input-group">
+              <input
+                type="text"
+                name="text"
+                className="form-control"
+                placeholder="Search event title and description"
+                value={text}
+                onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
+                  onChange(ev)
+                  debounceInputSearch(ev.target.value);
+                }}
+              />
+              <div className="input-group-append">
+                <button className="btn btn-secondary" type="submit">
+                  <i className="fa fa-search" />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4" />
+        </div>
       </form>
     </div>
   );
