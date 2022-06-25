@@ -2,17 +2,19 @@
     "name": "server",
     "version": "1.0.0",
     "description": "",
-    "main": "build/server/index.js",
+    "main": "dist/server/index.js",
     "scripts": {
         "dev": "concurrently \"yarn run server\" \"yarn run client\"",
-        "start": "tsc && node build/server/index.js",
+        "start": "node build/server/index.js",
+        "build": "yarn run lint && tsc",
         "server": "yarn && tsc && nodemon server/index.ts",
         "client": "cd client && yarn && yarn start",
         "compile": "tsc",
         "prettier": "prettier --config ./.prettierrc --write \"**/*.ts\"",
         "lint": "npm run prettier --write --check --config ./.prettierrc \"**/*.ts\" && eslint . --ext .ts",
         "test": "tsc && mocha ./server/tests/*.spec.js",
-        "test:watch": "mocha --watch ./server/tests/*.spec.js"
+        "test:watch": "mocha --watch ./server/tests/*.spec.js",
+        "postinstall": "yarn run build"
     },
     "author": "",
     "license": "ISC",
