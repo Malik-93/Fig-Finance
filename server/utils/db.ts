@@ -3,8 +3,6 @@ import logger from './logger';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import mongoose from 'mongoose';
 dotenv.config();
-
-
 // if (process.env.NODE_ENV === 'development') {
 //     process.env['MONGODB_URI'] = process.env.LOCAL_MONGODB_URI;
 // }
@@ -17,10 +15,10 @@ const connection = mongoose.connect(process.env.MONGODB_URI, {
     keepAlive: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true,
+    // useUnifiedTopology: true,
     // Below options would be deprecate in future release
-    // reconnectTries: Number.MAX_VALUE,
-    // reconnectInterval: 500,
+    reconnectTries: Number.MAX_VALUE,
+    reconnectInterval: 500,
 });
 
 connection
