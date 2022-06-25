@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "concurrently \"yarn run server\" \"yarn run client\"",
         "start": "tsc && node build/server/index.js",
-        "build": "npm run lint && tsc",
+        "build": "npm run lint && tsc && node build/server/index.js",
         "server": "yarn && tsc && nodemon server/index.ts",
         "client": "cd client && yarn && yarn start",
         "compile": "tsc",
