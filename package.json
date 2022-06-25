@@ -13,9 +13,8 @@
         "prettier": "prettier --config ./.prettierrc --write \"**/*.ts\"",
         "lint": "npm run prettier --write --check --config ./.prettierrc \"**/*.ts\" && eslint . --ext .ts",
         "test": "tsc && mocha ./server/tests/*.spec.js",
-        "test:watch": "mocha --watch ./server/tests/*.spec.js",
-        "postinstall": "yarn run build"
-    },
+        "test:watch": "mocha --watch ./server/tests/*.spec.js"
+        },
     "author": "",
     "license": "ISC",
     "dependencies": {
