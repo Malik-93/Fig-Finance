@@ -13,6 +13,7 @@ router.get('/list', async function (req, res) {
                 success: true,
                 statusCode: 200,
                 message: 'Success',
+                count: events.length,
                 events,
             });
         else
@@ -47,6 +48,7 @@ router.post('/filtered-list', async function (req, res) {
                 success: true,
                 statusCode: 200,
                 message: 'Success',
+                count: events.length,
                 events,
             });
         else

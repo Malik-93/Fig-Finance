@@ -1,16 +1,19 @@
 import EventRepo from '../db/models/EventRepo';
 import { Event, CreateEventRequest, EventFilters } from '../models/Event';
 import * as mongoose from 'mongoose';
-import { uniqueIdGenerator } from '../helpers';
-
+import {
+    randomAddressGenerator,
+    randomCategoryGenerator,
+    uniqueIdGenerator,
+} from '../helpers';
+const category = randomCategoryGenerator();
 const initEventRequest: CreateEventRequest = {
-    title: 'Healthcare Track',
-    description:
-        'This session seeks to get people thinking about the ultimate objective of health AI',
-    category: 'AI',
+    title: `Title ${category}`,
+    description: `Description about the event ${category}`,
+    category,
     date: `${new Date().toUTCString()}`,
     isVirtual: true,
-    address: 'London, United Kingdom',
+    address: randomAddressGenerator(),
 };
 export class EventService {
     /*
@@ -53,10 +56,10 @@ export class EventService {
     async filterEvents(filter: EventFilters): Promise<Event[]> {
         const query = {
             $or: [
-                { category: { $in: filter.query } },
-                { address: { $in: filter.query } },
-                { title: { $in: filter.query } },
-                { description: { $in: filter.query } },
+                { category: { $regex: filter.query[0], $options: 'i' } },
+                { address: { $regex: filter.query[0], $options: 'i' } },
+                { title: { $regex: filter.query[0], $options: 'i' } },
+                { description: { $regex: filter.query[0], $options: 'i' } },
             ],
         };
         const doc = await EventRepo.find(query).populate('Event').exec();

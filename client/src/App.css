@@ -20,9 +20,9 @@ h1.heading {
 }
 
 .img-hover-zoom--colorize img {
-    border-radius: 50%;
-    width: 150px;
-    height: auto;
+    border-radius: 20%;
+    width: 220px;
+    height: 220px;
     margin-top: 20px;
     padding: 1px;
     transition: transform .5s;

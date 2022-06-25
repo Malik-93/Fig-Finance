@@ -17,12 +17,13 @@ const initRoute = async function (req, res) {
     const events: Event[] = await eventService.getAllEvents();
     if (!events.length) {
         for (let index = 0; index < 30; index++) {
+            const category = randomCategoryGenerator();
             eventsArr.push({
                 _id: new mongoose.Types.ObjectId(),
                 documentID: uniqueIdGenerator(),
-                title: `Title ${randomCategoryGenerator()}`,
-                description: `Description about the event ${randomCategoryGenerator()}`,
-                category: randomCategoryGenerator(),
+                title: `Title ${category}`,
+                description: `Description about the event ${category}`,
+                category,
                 date: `${new Date().toUTCString()}`,
                 isVirtual: index % 2 ? true : false,
                 address: randomAddressGenerator(),

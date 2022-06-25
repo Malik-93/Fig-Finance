@@ -38,7 +38,7 @@ export default (props: any) => {
                 type="text"
                 name="text"
                 className="form-control"
-                placeholder="Search event title and description"
+                placeholder="Search event..."
                 value={text}
                 onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
                   onChange(ev)

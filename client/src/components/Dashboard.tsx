@@ -27,9 +27,10 @@ export default (props: any) => {
   }
   const filterEvents = async (query: string) => {
     try {
-      setLoading(true)
+      if (loading) return;
+      setLoading(true);
       const payload = {
-        "query": [query.charAt(0).toUpperCase() + query.slice(1)],
+        "query": [query],
       }
       const response = await axios.post("/api/events/filtered-list", payload);
       const { statusCode, events } = response.data;
