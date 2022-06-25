@@ -3,7 +3,6 @@ import * as mongoose from 'mongoose';
 import {
     randomAddressGenerator,
     randomCategoryGenerator,
-    randomStringGenerator,
     uniqueIdGenerator,
 } from '../helpers';
 import { Event } from '../models/Event';
@@ -19,7 +18,6 @@ const initRoute = async function (req, res) {
         for (let index = 0; index < 30; index++) {
             const category = randomCategoryGenerator();
             eventsArr.push({
-                _id: new mongoose.Types.ObjectId(),
                 documentID: uniqueIdGenerator(),
                 title: `Title ${category}`,
                 description: `Description about the event ${category}`,

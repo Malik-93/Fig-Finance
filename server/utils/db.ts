@@ -15,10 +15,9 @@ const connection = mongoose.connect(process.env.MONGODB_URI, {
     keepAlive: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    // useUnifiedTopology: true,
-    // Below options would be deprecate in future release
     reconnectTries: Number.MAX_VALUE,
     reconnectInterval: 500,
+    // useUnifiedTopology: true,
 });
 
 connection
