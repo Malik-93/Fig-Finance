@@ -9,8 +9,6 @@ mongoose.Promise = global.Promise;
 
 const connection = mongoose.connect(process.env.MONGODB_URI, {
     autoIndex: true,
-    reconnectTries: Number.MAX_VALUE,
-    reconnectInterval: 500,
     poolSize: 50,
     bufferMaxEntries: 0,
     useNewUrlParser: true,
@@ -18,6 +16,9 @@ const connection = mongoose.connect(process.env.MONGODB_URI, {
     useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
+    // Below options would be deprecate in future release
+    // reconnectTries: Number.MAX_VALUE,
+    // reconnectInterval: 500,
 });
 
 connection
