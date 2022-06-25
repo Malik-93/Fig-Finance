@@ -38,7 +38,7 @@ router.post('/filtered-list', async function (req, res) {
     const filter: EventFilters = req.body;
     try {
         let events: Event[];
-        if (!filter.query[0]) {
+        if (!filter.query) {
             events = await eventService.getAllEvents();
         } else {
             events = await eventService.filterEvents(filter);

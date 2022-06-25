@@ -30,7 +30,7 @@ export default (props: any) => {
       if (loading) return;
       setLoading(true);
       const payload = {
-        "query": [query],
+        "query": query.trim(),
       }
       const response = await axios.post("/api/events/filtered-list", payload);
       const { statusCode, events } = response.data;

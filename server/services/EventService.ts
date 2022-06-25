@@ -54,12 +54,13 @@ export class EventService {
     Filter events according to user's interests and location
     */
     async filterEvents(filter: EventFilters): Promise<Event[]> {
+        const newRegx = new RegExp([filter.query].join('|'), 'i');
         const query = {
             $or: [
-                { category: { $regex: filter.query[0], $options: 'i' } },
-                { address: { $regex: filter.query[0], $options: 'i' } },
-                { title: { $regex: filter.query[0], $options: 'i' } },
-                { description: { $regex: filter.query[0], $options: 'i' } },
+                { category: { $in: newRegx } },
+                { address: { $in: newRegx } },
+                { title: { $in: newRegx } },
+                { description: { $in: newRegx } },
             ],
         };
         const doc = await EventRepo.find(query).populate('Event').exec();
