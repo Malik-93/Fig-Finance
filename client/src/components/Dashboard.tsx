@@ -56,7 +56,9 @@ export default (props: any) => {
   return (
     <div className="">
       <Search onSubmit={filterEvents} />
-
+      <div className="events-heading">
+        <h2>Events</h2>
+      </div>
       <div className="p-5" key={`card-key-`}>
         <div className="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5  g-3">
           {

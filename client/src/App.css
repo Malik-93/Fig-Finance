@@ -18,6 +18,17 @@ h1.heading {
     border: 1;
     border-radius: 1rem;
 }
+div.input-group-append{
+    margin-left: 4px !important;
+}
+
+input.form-control {
+    border-radius: 5px !important;
+}
+.events-heading {
+    display: flex;
+    justify-content: center;
+}
 
 .img-hover-zoom--colorize img {
     border-radius: 20%;
@@ -91,7 +102,7 @@ h1.heading {
         font-size: 2rem;
     }
 }
-
+/* No record found styles */
 .no-record-found-container {
   width: 100%;
   display: flex;
